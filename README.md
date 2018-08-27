@@ -19,8 +19,8 @@ Usage:
   ...
   root/test/classx
 4. Finally, 
-ln -s ./train path/to/code/dataset/train
-ln -s ./test  path/to/code/dataset/test
+ ln -s ./train path/to/code/dataset/train 
+ ln -s ./test  path/to/code/dataset/test
 
 Run:
 1. Modufy your run.sh 
