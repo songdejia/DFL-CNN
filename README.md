@@ -1,4 +1,4 @@
-# DFL-
+# DFL-CNN 
 This is a pytorch re-implementation of [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf) 
 
 The features are summarized blow:
