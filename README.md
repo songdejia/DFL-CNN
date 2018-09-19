@@ -10,15 +10,19 @@ The features are summarized blow:
 ![Display](https://www.researchgate.net/profile/Xiangteng_He/publication/320032994/figure/fig1/AS:542681248288768@1506396700557/Examples-of-CUB-200-2011-dataset-1-First-row-shows-large-variance-in-the-same.png)
 
 Usage:
-+ wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
-+ tar -zxvf CUB-200-2011.tgz
+```
+wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
+tar -zxvf CUB-200-2011.tgz
+```
 + Then, split into two directorys by train_test_split.txt as 
   root/train/classx
   ...
   root/test/classx
 + Finally, 
+``` 
  ln -s ./train path/to/code/dataset/train &&
  ln -s ./test  path/to/code/dataset/test
+```
 
 Run:
 + Modufy your run.sh 
