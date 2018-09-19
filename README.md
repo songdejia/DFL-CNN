@@ -20,11 +20,11 @@ tar -zxvf CUB-200-2011.tgz
   root/test/classx
 + Finally, 
 ``` 
- ln -s ./train path/to/code/dataset/train &&
+ ln -s ./train path/to/code/dataset/train 
  ln -s ./test  path/to/code/dataset/test
 ```
 
-Run:
+Train and Test
 + Modufy your run.sh 
 + sh run.sh
 Visualization of ten best boxes is saved in result
