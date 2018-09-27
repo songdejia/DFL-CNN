@@ -1,7 +1,7 @@
-# DFL-CNN 
+# DFL-CNN : a fine-grained classifier
 This is a simple pytorch re-implementation of [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf)
 
-# Note： 
+### Note： 
 This version will be updated recently.Please pay attension to this work.
 
 The features are summarized blow:
@@ -14,7 +14,7 @@ The features are summarized blow:
 
 ![Display](https://www.researchgate.net/profile/Xiangteng_He/publication/320032994/figure/fig1/AS:542681248288768@1506396700557/Examples-of-CUB-200-2011-dataset-1-First-row-shows-large-variance-in-the-same.png)
 
-# Algorithms Introduction
+### Algorithms Introduction
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshots/introduction2.png)
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshots/introduction1.jpg)
 
@@ -29,11 +29,11 @@ wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
  ln -s ./train path/to/code/dataset/train 
  ln -s ./test  path/to/code/dataset/test
 ```
-
-Train and Test
++ Finally, Train and Test.
 + Modify your run.sh 
 + sh run.sh
 
+### Note
 Visualization of ten best boxes is saved in **vis_result**.
 Weight(checkpoint.pth.tar, model_best.pth.tar) is in **weight**.
 Loss info is saved in **log**.
