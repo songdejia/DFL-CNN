@@ -12,7 +12,7 @@ The features are summarized blow:
 + Part FCs is replaced by Global Average Pooling to reduce parameters.
 + Every epoch, ten best pathes is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg, e.g, 0.jpg.
 
-### 2.Algorithms Introduction
+### 2.Algorithms Introduction:
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction2.png)
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction1.jpg)
 
@@ -31,7 +31,7 @@ wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
 + Modify your run.sh 
 + sh run.sh
 
-### 4.Note
+### 4.Note:
 1. Visualization of ten best boxes is saved in **vis_result**. 
 2. Weight(checkpoint.pth.tar, model_best.pth.tar) is in **weight**.
 3. Loss info is saved in **log**.
