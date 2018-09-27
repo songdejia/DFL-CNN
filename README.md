@@ -1,6 +1,7 @@
 # DFL-CNN 
 This is a pytorch re-implementation of [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf)
-# This version will be updated recently.Please pay attension to this work.
+# Note： 
+This version will be updated recently.Please pay attension to this work.
 
 The features are summarized blow:
 + Use VGG16 as base Network
