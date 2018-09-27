@@ -15,8 +15,8 @@ The features are summarized blow:
 ![Display](https://www.researchgate.net/profile/Xiangteng_He/publication/320032994/figure/fig1/AS:542681248288768@1506396700557/Examples-of-CUB-200-2011-dataset-1-First-row-shows-large-variance-in-the-same.png)
 
 ### Algorithms Introduction
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshots/introduction2.png)
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshots/introduction1.jpg)
+![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction2.png)
+![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction1.jpg)
 
 Usage:
 + Download dataset, you can split trainset/valset by yourself
