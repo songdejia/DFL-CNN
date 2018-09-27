@@ -1,5 +1,5 @@
 # DFL-CNN : a fine-grained classifier
-This is a simple pytorch re-implementation of [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf)
+This is a simple pytorch re-implementation of [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf).
 
 ### 1.Introduction： 
 This version will be updated recently.Please pay attension to this work.
@@ -32,7 +32,7 @@ wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
 + sh run.sh
 
 ### 4.Note
-Visualization of ten best boxes is saved in **vis_result**.
-Weight(checkpoint.pth.tar, model_best.pth.tar) is in **weight**.
-Loss info is saved in **log**.
+1. Visualization of ten best boxes is saved in **vis_result**. 
+2. Weight(checkpoint.pth.tar, model_best.pth.tar) is in **weight**.
+3. Loss info is saved in **log**.
 
