@@ -1,4 +1,4 @@
-from model.DFL import DFL_VGG
+from model.DFL import DFL_VGG16
 from utils.util import *
 from utils.transform import *
 from train import *
@@ -29,13 +29,13 @@ parser.add_argument('--dataroot', metavar='DIR',
                     help='path to dataset')
 parser.add_argument('--result', metavar='DIR',
                     help='path to dataset')
-parser.add_argument('-j', '--workers', default=8, type=int, metavar='N',
+parser.add_argument('-j', '--workers', default=16, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
-parser.add_argument('--epochs', default=10000, type=int, metavar='N',
+parser.add_argument('--epochs', default=100000, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
-parser.add_argument('-trainbatch', '--train_batch_size', default=64, type=int,
+parser.add_argument('--train_batchsize_per_gpu', default=14, type=int,
                     metavar='N', help='mini-batch size (default: 64)')
 parser.add_argument('-testbatch', '--test_batch_size', default=64, type=int,
                     metavar='N', help='mini-batch size (default: 32)')
@@ -65,6 +65,12 @@ parser.add_argument('--log_test_dir', default='log_test', type=str,
                     help='log for test')
 parser.add_argument('--nclass', default=583, type=int,
                     help='num of classes')
+parser.add_argument('--eval_epoch', default=50, type=int,
+                    help='every eval_epoch we will evaluate')
+parser.add_argument('--vis_epoch', default=100, type=int,
+                    help='every vis_epoch we will evaluate')
+parser.add_argument('--save_epoch', default=100, type=int,
+                    help='every save_epoch we will evaluate')
 parser.add_argument('--w', default=448, type=int,
                     help='transform, seen as align')
 parser.add_argument('--h', default=448, type=int,
@@ -74,90 +80,94 @@ parser.add_argument('--h', default=448, type=int,
 best_prec1 = 0
 
 def main():
-     global args, best_prec1
-     args = parser.parse_args()
-     
-     # DFL Model
-     model = DFL_VGG(k = 10, nclass = 200)     
-     
-     if args.gpu is not None:
-        ids = get_device_ids(args.gpu)
-        model = nn.DataParallel(model, device_ids=ids)
+    print('DFL-CNN <==> Part1 : prepare for parameters <==> Begin')
+    global args, best_prec1
+    args = parser.parse_args()
+    print('DFL-CNN <==> Part1 : prepare for parameters <==> Done')
+
+
+    
+    print('DFL-CNN <==> Part2 : Load Network  <==> Begin')
+    model = DFL_VGG16(k = 10, nclass = 200)     
+    if args.gpu is not None:
+        model = nn.DataParallel(model, device_ids=range(args.gpu))
         model = model.cuda()
+        cudnn.benchmark = True
+    if args.init_type is not None:
+        try: 
+            init_weights(model, init_type=args.init_type)
+        except:
+            sys.exit('DFL-CNN <==> Part2 : Load Network  <==> Init_weights error!')
 
-     if args.init_type is not None:
-          init_weights(model, init_type=args.init_type)
-     print('Model is Created and Initialized')
-     
-     # Define loss function (criterion) and optimizer
-     criterion = nn.CrossEntropyLoss()
-     optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay = args.weight_decay)
-     print('Criterion and Optimizer is Done')
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay = args.weight_decay)
 
-     # Optionally resume from a checkpoint
-     if args.resume:
+    # Optionally resume from a checkpoint
+    if args.resume:
         if os.path.isfile(args.resume):
-            print("=> loading checkpoint '{}'".format(args.resume))
             checkpoint = torch.load(args.resume)
             args.start_epoch = checkpoint['epoch']
             best_prec1 = checkpoint['best_prec1']
             model.load_state_dict(checkpoint['state_dict'])
             optimizer.load_state_dict(checkpoint['optimizer'])
-            print("=> loaded checkpoint '{}' (epoch {})".format(args.resume, checkpoint['epoch']))
+            print('DFL-CNN <==> Part2 : Load Network  <==> Continue from {} epoch {}'.format(args.resume, checkpoint['epoch']))
         else:
-            print("=> no checkpoint found at '{}'".format(args.resume))
+            print('DFL-CNN <==> Part2 : Load Network  <==> Failed')
+    print('DFL-CNN <==> Part2 : Load Network  <==> Done')
 
-     cudnn.benchmark = True
+    
 
-     # Data loading code
-     dataroot = os.path.abspath(args.dataroot)
-     traindir = os.path.join(dataroot, 'train')
-     testdir = os.path.join(dataroot, 'test')
+    print('DFL-CNN <==> Part3 : Load Dataset  <==> Begin')
+    dataroot = os.path.abspath(args.dataroot)
+    traindir = os.path.join(dataroot, 'train')
+    testdir = os.path.join(dataroot, 'test')
 
-     # ImageFolder to process img
-     transform = get_transform()
-     train_dataset = ImageFolderWithPaths(traindir, transform = transform)
-     test_dataset  = ImageFolderWithPaths(testdir, transform = transform)
+    # ImageFolder to process img
+    transform_train = get_transform_for_train()
+    transform_test  = get_transform_for_test()
+    train_dataset = ImageFolderWithPaths(traindir, transform = transform_train)
+    test_dataset  = ImageFolderWithPaths(testdir,  transform = transform_test)
 
-     # A list for target to classname
-     index2classlist = train_dataset.index2classlist()
+    # A list for target to classname
+    index2classlist = train_dataset.index2classlist()
 
-     # data loader   
-     train_loader = torch.utils.data.DataLoader(
-          train_dataset, batch_size=args.train_batch_size, shuffle=True,
-          num_workers=args.workers, pin_memory=True, drop_last = False)
-     test_loader = torch.utils.data.DataLoader(
-          test_dataset, batch_size=args.test_batch_size, shuffle=True,
-          num_workers=args.workers, pin_memory=True, drop_last = False)
-     print('data loader Done')
+    # data loader   
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset, batch_size=args.gpu * args.train_batchsize_per_gpu, shuffle=True,
+        num_workers=args.workers, pin_memory=True, drop_last = False)
+    test_loader = torch.utils.data.DataLoader(
+        test_dataset, batch_size=1, shuffle=True,
+        num_workers=args.workers, pin_memory=True, drop_last = False)
+    print('DFL-CNN <==> Part3 : Load Dataset  <==> Done')
    
 
-       
-     for epoch in range(args.start_epoch, args.epochs):
-        """
-        for data, labels, paths in train_loader:
-            check_classname2dirname(index2classlist, labels, paths)
-        """
+    print('DFL-CNN <==> Part4 : Train and Test  <==> Begin')
+    for epoch in range(args.start_epoch, args.epochs):
         adjust_learning_rate(args, optimizer, epoch, gamma = 0.1)
         
         # train for one epoch
         train(args, train_loader, model, criterion, optimizer, epoch)
-        
-        # evaluate on validation set
-        prec1 = validate(args, test_loader, model, criterion, epoch)
-        
-        # do a test for visualization
-        draw_patch(epoch, model, index2classlist, args.result)
 
-        # remember best prec@1 and save checkpoint
-        is_best = prec1 > best_prec1
-        best_prec1 = max(prec1, best_prec1)
-        save_checkpoint({
-            'epoch': epoch + 1,
-            'state_dict': model.state_dict(),
-            'best_prec1': best_prec1,
-            'optimizer' : optimizer.state_dict(),
-        }, is_best)
+        # evaluate on validation set
+        if epoch % args.eval_epoch == 0 and epoch >= 50:
+            prec1 = validate(args, test_loader, model, criterion, epoch)
+            
+            # remember best prec@1 and save checkpoint
+            is_best = prec1 > best_prec1
+            best_prec1 = max(prec1, best_prec1)
+            save_checkpoint({
+                'epoch': epoch + 1,
+                'state_dict': model.state_dict(),
+                'best_prec1': best_prec1,
+                'optimizer' : optimizer.state_dict(),
+            }, is_best) 
+            
+        # do a test for visualization
+        if epoch % args.vis_epoch  == 0 and epoch != 0: 
+            draw_patch(epoch, model, index2classlist, args)
+
+
+
 
 if __name__ == '__main__':
      main() 

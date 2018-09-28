@@ -1,4 +1,4 @@
-from model.DFL import DFL_VGG
+from model.DFL import DFL_VGG16
 from utils.util import *
 from utils.transform import *
 from train import *
@@ -109,7 +109,23 @@ def concat_images(imga, imgb):
     img.paste(imgb, (128, 0))
     return img
 
-def draw_patch(epoch, model, index2classlist, result):
+def get_transform():
+    transform_list = []
+    
+    transform_list.append(transforms.Lambda(lambda img:scale_keep_ar_min_fixed(img, 448)))
+    
+    #transform_list.append(transforms.RandomHorizontalFlip(p=0.3))
+    
+    transform_list.append(transforms.CenterCrop((448, 448)))
+    
+    transform_list.append(transforms.ToTensor())
+    
+    transform_list.append(transforms.Normalize(mean=(0.5,0.5,0.5),std=(0.5,0.5,0.5)))
+    
+    return transforms.Compose(transform_list)
+
+
+def draw_patch(epoch, model, index2classlist, args):
     """Implement: use model to predict images and draw ten boxes by POOL6
     path to images need to predict is in './dataset/bird'
 
@@ -118,12 +134,11 @@ def draw_patch(epoch, model, index2classlist, result):
 
     index2classlist : transform predict label to specific classname
     """
-    result = os.path.abspath(result)
-    print(result)
+    result = os.path.abspath(args.result)
     if not os.path.isdir(result):
         os.mkdir(result)
 
-    path_img = os.path.abspath('./dataset/bird')
+    path_img = os.path.join(os.path.abspath('./'), 'vis_img')
     num_imgs = len(os.listdir(path_img))
 
     dirs = os.path.join(result, str(epoch))
