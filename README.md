@@ -17,22 +17,22 @@ The features are summarized blow:
 
 
 ### 2.Algorithms Introduction:
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction2.png)
+![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction2.png).
 
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction1.jpg)
+![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction1.jpg).
 
 
 
 
 
 ### 3.vis ten box for discriminative patch 
-<div align=center><img width="150" height="150" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_1.jpg"/></div>
+<div align=center><img width="560" height="560" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_1.jpg"/></div>
 
-<div align=center><img width="150" height="150" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_2.jpg"/></div>
+<div align=center><img width="560" height="560" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_2.jpg"/></div>
 
-<div align=center><img width="150" height="150" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_3.jpg"/></div>
+<div align=center><img width="560" height="560" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_3.jpg"/></div>
 
-<div align=center><img width="448" height="448" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_4.jpg"/></div>
+<div align=center><img width="560" height="560" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_4.jpg"/></div>
 
 
 
