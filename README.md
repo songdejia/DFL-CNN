@@ -26,13 +26,13 @@ The features are summarized blow:
 
 
 ### 3.vis ten box for discriminative patch 
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_1.jpg)
+<div align=center><img width="150" height="150" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_1.jpg"/></div>
 
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_2.jpg)
+<div align=center><img width="150" height="150" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_2.jpg"/></div>
 
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_3.jpg)
+<div align=center><img width="150" height="150" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_3.jpg"/></div>
 
-![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_4.jpg)
+<div align=center><img width="448" height="448" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_4.jpg"/></div>
 
 
 
