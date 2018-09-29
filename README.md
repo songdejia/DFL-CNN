@@ -1,7 +1,8 @@
 # DFL-CNN : a fine-grained classifier
 This is a simple pytorch re-implementation of [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf).
 
-
+ 
+ 
 ### 1.Introduction： 
 This version will be updated recently.Please pay attension to this work.
 The features are summarized blow:
@@ -14,10 +15,14 @@ The features are summarized blow:
 + Every epoch, ten best pathes is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg, e.g, 0.jpg.
 
 
+
 ### 2.Algorithms Introduction:
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction2.png)
 
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/introduction1.jpg)
+
+
+
 
 
 ### 3.vis ten box for discriminative patch 
@@ -28,6 +33,8 @@ The features are summarized blow:
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_3.jpg)
 
 ![Display](https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_4.jpg)
+
+
 
 
 ### 4.Usage:
@@ -46,6 +53,7 @@ wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
 ```
 sh run.sh
 ```
+
 
 
 ### 5.Note:
