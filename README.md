@@ -11,7 +11,7 @@ The features are summarized blow:
          + Or you can download dataset which has been split directly from 
          [BaiduYun Link](https://pan.baidu.com/s/1JQxa3DYDrM329skC73kbzQ).
 
-+ Train on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%**
++ Train on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%**.
   You can download weights from [here](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA)
 + Part FCs is replaced by Global Average Pooling to reduce parameters.
 + Every epoch, ten best pathes is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg
@@ -25,7 +25,7 @@ The features are summarized blow:
  
  
  
-### Results and Visualization of ten boxes for discriminative patches
+### Results and Visualization of ten boxes for discriminative patches:
 Train on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%**.
 You can download weights from [here](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA).
 If use TenCrop transform in code, result can improve further.
