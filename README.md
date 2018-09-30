@@ -1,18 +1,15 @@
 # DFL-CNN : a fine-grained classifier
 This is a simple pytorch re-implementation of CVPR 2018.
-[Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf).
++ [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf).
 
 ### Introduction:
 The features are summarized blow:
 + Use VGG16 as base Network.
 + Dataset 
-         + [CUB-200-2011](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html), you can split **trainset/testset** by yourself.
-         + Or you can download dataset which has been split directly from 
-         [BaiduYun Link](https://pan.baidu.com/s/1JQxa3DYDrM329skC73kbzQ).
-+ Train on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%**.
-  You can download weights from [here](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA)
+         + [CUB-200-2011](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html), you can split **trainset/testset** by yourself.**Or** you can download dataset which has been split directly from [BaiduYun Link](https://pan.baidu.com/s/1JQxa3DYDrM329skC73kbzQ).
++ This work has been trained on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%** which is lower than author's. You can download weights from [weights](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA)
 + Part FCs is replaced by Global Average Pooling to reduce parameters.
-+ Every epoch, ten best pathes is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg
++ Every some epoches, ten best patches is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg
 
 
 
@@ -24,9 +21,7 @@ The features are summarized blow:
  
  
 ### Results and Visualization of ten boxes for discriminative patches:
-Train on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%**.
-You can download weights from [here](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA).
-If use TenCrop transform in code, result can improve further.
++ This work has been trained on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%** which is lower than author's. You can download weights from [weights](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA). If use TenCrop transform in code, result can improve further.
 <div align=center><img width="880" height="962" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/test.jpg"/></div>
 
 
