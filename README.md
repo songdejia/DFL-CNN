@@ -1,5 +1,5 @@
 # DFL-CNN : a fine-grained classifier
-This is a simple pytorch re-implementation of CVPR 2018
+This is a simple pytorch re-implementation of CVPR 2018.
 [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf).
 
   
