@@ -65,11 +65,11 @@ parser.add_argument('--log_test_dir', default='log_test', type=str,
                     help='log for test')
 parser.add_argument('--nclass', default=583, type=int,
                     help='num of classes')
-parser.add_argument('--eval_epoch', default=50, type=int,
+parser.add_argument('--eval_epoch', default=2, type=int,
                     help='every eval_epoch we will evaluate')
-parser.add_argument('--vis_epoch', default=100, type=int,
+parser.add_argument('--vis_epoch', default=2, type=int,
                     help='every vis_epoch we will evaluate')
-parser.add_argument('--save_epoch', default=100, type=int,
+parser.add_argument('--save_epoch', default=2, type=int,
                     help='every save_epoch we will evaluate')
 parser.add_argument('--w', default=448, type=int,
                     help='transform, seen as align')
@@ -125,8 +125,11 @@ def main():
     # ImageFolder to process img
     transform_train = get_transform_for_train()
     transform_test  = get_transform_for_test()
+    transform_test_simple = get_transform_for_test_simple()
+
     train_dataset = ImageFolderWithPaths(traindir, transform = transform_train)
     test_dataset  = ImageFolderWithPaths(testdir,  transform = transform_test)
+    test_dataset_simple = ImageFolderWithPaths(testdir, transform = transform_test_simple)
 
     # A list for target to classname
     index2classlist = train_dataset.index2classlist()
@@ -137,6 +140,9 @@ def main():
         num_workers=args.workers, pin_memory=True, drop_last = False)
     test_loader = torch.utils.data.DataLoader(
         test_dataset, batch_size=1, shuffle=True,
+        num_workers=args.workers, pin_memory=True, drop_last = False)
+    test_loader_simple = torch.utils.data.DataLoader(
+        test_dataset_simple, batch_size=1, shuffle=True,
         num_workers=args.workers, pin_memory=True, drop_last = False)
     print('DFL-CNN <==> Part3 : Load Dataset  <==> Done')
    
@@ -149,8 +155,8 @@ def main():
         train(args, train_loader, model, criterion, optimizer, epoch)
 
         # evaluate on validation set
-        if epoch % args.eval_epoch == 0 and epoch >= 50:
-            prec1 = validate(args, test_loader, model, criterion, epoch)
+        if epoch % args.eval_epoch == 0:
+            prec1 = validate_simple(args, test_loader_simple, model, criterion, epoch)
             
             # remember best prec@1 and save checkpoint
             is_best = prec1 > best_prec1
@@ -160,12 +166,13 @@ def main():
                 'state_dict': model.state_dict(),
                 'best_prec1': best_prec1,
                 'optimizer' : optimizer.state_dict(),
+                'prec1'     : prec1,
             }, is_best) 
-            
-        # do a test for visualization
+
+        # do a test for visualization    
         if epoch % args.vis_epoch  == 0 and epoch != 0: 
             draw_patch(epoch, model, index2classlist, args)
-
+        
 
 
 

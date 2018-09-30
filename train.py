@@ -43,6 +43,10 @@ def train(args, train_loader, model, criterion, optimizer, epoch):
         prec1, prec5 = accuracy(out, target, topk=(1, 5))  # this is metric on trainset
         batchsize = data.size(0)
         losses.update(loss.item()  , batchsize)
+
+        if np.isnan(losses.val):
+            sys.exit('Loss diverged')
+
         losses1.update(loss1.item(), batchsize)
         losses2.update(loss2.item(), batchsize)
         losses3.update(loss3.item(), batchsize)
