@@ -5,14 +5,11 @@ This is a simple pytorch re-implementation of CVPR 2018.
 ### Introduction:
 The features are summarized blow:
 + Use VGG16 as base Network.
-+ Dataset 
-         + [CUB-200-2011](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html), you can split **trainset/testset** by yourself.**Or** you can download dataset which has been split directly from [BaiduYun Link](https://pan.baidu.com/s/1JQxa3DYDrM329skC73kbzQ).
-+ This work has been trained on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%** which is lower than author's. You can download weights from [weights](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA)
++ Dataset [CUB-200-2011](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html), you can split **trainset/testset** by yourself.**Or** you can download dataset which has been split directly from [BaiduYun Link](https://pan.baidu.com/s/1JQxa3DYDrM329skC73kbzQ).
++ This work has been trained on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%** which is lower than author's. You can download weights from [weights](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA).
 + Part FCs is replaced by Global Average Pooling to reduce parameters.
-+ Every some epoches, ten best patches is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg
-+ Update:
-         + 1. ResNet-101  DFL-CNN
-         + 2. Multi-scale DFL-CNN
++ Every some epoches, ten best patches is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg.
++ Update: ResNet-101 DFL-CNN and Multi-scale DFL-CNN need to be done.
 
 
 
