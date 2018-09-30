@@ -22,9 +22,11 @@ The features are summarized blow:
  
 ### Results and Visualization of ten boxes for discriminative patches:
 + This work has been trained on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%** which is lower than author's. You can download weights from [weights](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA). If use TenCrop transform in code, result can improve further.
-<div align=center><img width="880" height="962" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/test.jpg"/></div>
 
++ Test Results:
+<div align=center><img width="560" height="720" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/test.jpg"/></div>
 
++ Visualization:
 <div align=center><img width="700" height="700" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_1.jpg"/></div>
 
 <div align=center><img width="700" height="700" src="https://github.com/songdejia/DFL-CNN/blob/master/screenshot/vis_2.jpg"/></div>
