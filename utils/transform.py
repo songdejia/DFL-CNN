@@ -58,6 +58,20 @@ def get_transform_for_test():
     
     return transforms.Compose(transform_list)
 
+def get_transform_for_test_simple():
+
+    transform_list = []
+    
+    transform_list.append(transforms.Lambda(lambda img:scale_keep_ar_min_fixed(img, 448)))
+    
+    transform_list.append(transforms.CenterCrop((448, 448)))
+    
+    transform_list.append(transforms.ToTensor())
+    
+    transform_list.append(transforms.Normalize(mean=(0.5,0.5,0.5),std=(0.5,0.5,0.5)))
+    
+    return transforms.Compose(transform_list)
+
 
 
 

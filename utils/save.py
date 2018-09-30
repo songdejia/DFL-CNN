@@ -12,7 +12,7 @@ class Log(object):
         loss1 = losses[1]
         loss2 = losses[2]
         loss3 = losses[3]
-        root_dir = os.path.abspath('../')
+        root_dir = os.path.abspath('./')
         log_dir = os.path.join(root_dir, 'log') 
         if not os.path.exists(log_dir):
             os.mkdir(log_dir)
@@ -32,7 +32,7 @@ class Log(object):
 
     
     def save_test_info(self, epoch, top1, top5):
-        root_dir = os.path.abspath('../')
+        root_dir = os.path.abspath('./')
         log_dir = os.path.join(root_dir, 'log') 
         # check log_dir 
         if not os.path.exists(log_dir):
@@ -62,10 +62,15 @@ def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
     weight_dir = os.path.join(root_dir, 'weight')
     if not os.path.exists(weight_dir):
         os.mkdir(weight_dir)
-    file_path = os.path.join(weight_dir, filename)  
+    
+    epoch = state['epoch']
+    prec1 = state['prec1']
+
+    file_path = os.path.join(weight_dir, 'epoch_{:04d}_top1_{:02d}_{}'.format(int(epoch), int(prec1), filename))  
     torch.save(state, file_path)
     
     best_path = os.path.join(weight_dir, 'model_best.pth.tar')
+    
     if is_best:
         shutil.copyfile(file_path, best_path)
 
