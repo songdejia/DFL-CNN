@@ -10,6 +10,9 @@ The features are summarized blow:
 + This work has been trained on 4 Titan V after epoch 120 with batchsize 56, Now I got best result **Top1 85.140% Top5 96.237%** which is lower than author's. You can download weights from [weights](https://pan.baidu.com/s/1nxI3mV2cOOoMCLpCqg_cjA)
 + Part FCs is replaced by Global Average Pooling to reduce parameters.
 + Every some epoches, ten best patches is visualized in **vis_result** directory, you can put images you want to visualize in **vis_img** named number.jpg
++ Update:
+         + 1. ResNet-101  DFL-CNN
+         + 2. Multi-scale DFL-CNN
 
 
 
@@ -38,7 +41,7 @@ The features are summarized blow:
 
 
 
-### 4.Usage:
+### Usage:
 + Download dataset, you can split trainset/valset by yourself
 ```
 wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
@@ -56,7 +59,7 @@ sh run.sh
 ```
 
 
-### 5.Note:
+### Note:
 1. Visualization of ten best boxes is saved in **vis_result/**, img you want to visualize should be put
    in **vis_img/**. 
 2. Weight(checkpoint.pth.tar, model_best.pth.tar) is in **weight/**.
