@@ -2,6 +2,7 @@
 This is a simple pytorch re-implementation of CVPR 2018 [Learning a Discriminative Filter Bank Within a CNN for Fine-Grained Recognition](https://arxiv.org/pdf/1611.09932.pdf).
 
 ### Introduction:
+This work still need to be updated.
 The features are summarized blow:
 + Use VGG16 as base Network.
 + Dataset [CUB-200-2011](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html), you can split **trainset/testset** by yourself.**Or** you can download dataset which has been split directly from [BaiduYun Link](https://pan.baidu.com/s/1JQxa3DYDrM329skC73kbzQ).
